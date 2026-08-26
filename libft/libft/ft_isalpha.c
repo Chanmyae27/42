@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-int	isalpha(int c)
+int	ft_isalpha(int c)
 {
-	if (!(c >= 65 && c <= 90)
-		|| (c >= 97 && c <= 122))
-		return (0);
-	return (1);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 18:32:57 by cmyae             #+#    #+#             */
-/*   Updated: 2026/08/24 18:32:59 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/08/29 13:40:12 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {

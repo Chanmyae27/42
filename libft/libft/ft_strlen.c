@@ -6,18 +6,18 @@
 /*   By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 15:34:34 by cmyae             #+#    #+#             */
-/*   Updated: 2026/08/24 15:55:27 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/09/04 18:03:36 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i])
 	{
 		i++;
 	}

@@ -6,11 +6,11 @@
 /*   By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:02:07 by cmyae             #+#    #+#             */
-/*   Updated: 2026/08/24 19:02:11 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/08/29 13:42:23 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int	ft_isprint(int c)
 {

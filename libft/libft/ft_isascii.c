@@ -6,11 +6,11 @@
 /*   By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 18:36:06 by cmyae             #+#    #+#             */
-/*   Updated: 2026/08/24 18:53:10 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/08/29 13:41:46 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int	ft_isascii(int c)
 {

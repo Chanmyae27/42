@@ -6,16 +6,15 @@
 /*   By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 18:33:24 by cmyae             #+#    #+#             */
-/*   Updated: 2026/08/24 18:33:40 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/09/04 17:51:12 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int	ft_isalnum(int c)
 {
-	if (((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		|| (c >= '0' && c <= '9'))
+	if (ft_isalpha(c) || ft_isdigit(c))
 		return (1);
 	return (0);
 }

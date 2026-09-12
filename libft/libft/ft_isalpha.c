@@ -6,13 +6,11 @@
 /*   By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:21:43 by cmyae             #+#    #+#             */
-/*   Updated: 2026/08/24 16:21:45 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/08/29 13:39:17 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_isalpha(int c)
 {

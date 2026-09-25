@@ -12,54 +12,31 @@
 
 #include "get_next_line.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*ptr;
-	size_t	i;
-
-	if (nmemb == 0 || size == 0)
-		return (malloc(1));
-	else if (nmemb && size > (size_t)-1 / nmemb)
-		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	i = 0;
-	while (i < (nmemb * size))
-	{
-		ptr[i] = 0;
-		i++;
-	}
-	return (ptr);
-}
-
 char	*ft_read_file(char *buffer, int fd)
 {
 	char	*temp;
-	long	i;
+	long	bytes;
 
-	temp = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	i = 1;
-	while (!ft_strchr(buffer, '\n') && i)
+	temp = malloc(BUFFER_SIZE + 1);
+	if (!temp)
+		return (free (buffer), NULL);
+	bytes = 1;
+	while (!ft_strchr(buffer, '\n') && bytes > 0)
 	{
-		i = read(fd, temp, BUFFER_SIZE);
-		if (i < 0 || (!i && !buffer))
-		{
-			free (temp);
-			return (NULL);
-		}
-		temp[i] = '\0';
-		if (!buffer)
-			buffer = ft_strdup(temp);
-		else
+		bytes = read(fd, temp, BUFFER_SIZE);
+		if (bytes < 0)
+			return (free (temp), free (buffer), NULL);
+		temp[bytes] = '\0';
+		if (!buffer && bytes > 0)
+			buffer = ft_substr(temp, 0, bytes);
+		else if (bytes > 0)
 			buffer = ft_strjoin(buffer, temp);
-		if (!buffer)
-		{
-			free (temp);
-			return (NULL);
-		}
+		if (!buffer && bytes > 0)
+			return (free (temp), NULL);
 	}
 	free (temp);
+	if (!buffer || !*buffer)
+		return (free (buffer), NULL);
 	return (buffer);
 }
 
@@ -68,21 +45,23 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*res;
 	char		*temp;
-	size_t			i;
+	size_t		i;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = ft_read_file(buffer, fd);
 	if (!buffer)
 		return (NULL);
 	i = 0;
-	while (buffer[i] != '\n' && buffer[i])
-		++i;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
 	if (buffer[i] == '\n')
-		++i;
+		i++;
 	res = ft_substr(buffer, 0, i);
 	temp = ft_substr(buffer, i, ft_strlen(buffer) - i);
 	free (buffer);
 	buffer = temp;
+	if (!res)
+		return (free (buffer), buffer = NULL, NULL);
 	return (res);
 }

@@ -12,56 +12,106 @@
 
 #include "get_next_line.h"
 
-char	*ft_read_file(char *buffer, int fd)
+int	ft_find(t_node *lst)
 {
-	char	*temp;
-	long	bytes;
+	size_t	i;
 
-	temp = malloc(BUFFER_SIZE + 1);
-	if (!temp)
-		return (free (buffer), NULL);
-	bytes = 1;
-	while (!ft_strchr(buffer, '\n') && bytes > 0)
+	while (lst)
 	{
-		bytes = read(fd, temp, BUFFER_SIZE);
-		if (bytes < 0)
-			return (free (temp), free (buffer), NULL);
-		temp[bytes] = '\0';
-		if (!buffer && bytes > 0)
-			buffer = ft_substr(temp, 0, bytes);
-		else if (bytes > 0)
-			buffer = ft_strjoin(buffer, temp);
-		if (!buffer && bytes > 0)
-			return (free (temp), NULL);
+		i = 0;
+		while (i < lst->len)
+			if (lst->content[i++] == '\n')
+				return (1);
+		lst = lst->next;
 	}
-	free (temp);
-	if (!buffer || !*buffer)
-		return (free (buffer), NULL);
-	return (buffer);
+	return (0);
+}
+
+int	ft_read_file(t_node **lst, t_node **last, int fd)
+{
+	char	*buff;
+	t_node	*node;
+	int		bytes;
+
+	buff = malloc((size_t)BUFFER_SIZE + 1);
+	if (!buff)
+		return (-1);
+	bytes = read(fd, buff, BUFFER_SIZE);
+	if (bytes <= 0)
+	{
+		free (buff);
+		return (bytes);
+	}
+	buff[bytes] = '\0';
+	node = ft_new_node(buff, bytes);
+	if (!node)
+		return (-1);
+	ft_add_back(lst, last, node);
+	if (ft_find(node))
+		return (2);
+	return (1);
+}
+
+void	ft_shift_left(t_node *node, size_t start)
+{
+	size_t	i;
+
+	i = 0;
+	while (start < node->len)
+		node->content[i++] = node->content[start++];
+	node->len = i;
+	node->content[i] = '\0';
+}
+
+t_node	*ft_clean_stash(t_node *lst)
+{
+	t_node	*next;
+	size_t	i;
+	int		found;
+
+	while (lst)
+	{
+		i = 0;
+		while (i < lst->len && lst->content[i] != '\n')
+			i++;
+		found = (i < lst->len);
+		if (found && i + 1 < lst->len)
+		{
+			ft_shift_left(lst, i + 1);
+			return (lst);
+		}
+		next = lst->next;
+		free (lst->content);
+		free (lst);
+		lst = next;
+		if (found)
+			return (lst);
+	}
+	return (NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	char		*res;
-	char		*temp;
-	size_t		i;
+	static t_node	*stash;
+	t_node			*last;
+	char			*gnl;
+	int				status;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_read_file(buffer, fd);
-	if (!buffer)
+	last = NULL;
+	status = 1;
+	if (ft_find(stash))
+		status = 2;
+	while (status == 1)
+		status = ft_read_file(&stash, &last, fd);
+	if (status < 0)
+		return (ft_free_list(&stash));
+	if (!stash)
 		return (NULL);
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	if (buffer[i] == '\n')
-		i++;
-	res = ft_substr(buffer, 0, i);
-	temp = ft_substr(buffer, i, ft_strlen(buffer) - i);
-	free (buffer);
-	buffer = temp;
-	if (!res)
-		return (free (buffer), buffer = NULL, NULL);
-	return (res);
+	gnl = ft_gnl(stash, ft_line_len(stash));
+	if (!gnl)
+		return (ft_free_list(&stash));
+	stash = ft_clean_stash(stash);
+	return (gnl);
 }

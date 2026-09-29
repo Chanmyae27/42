@@ -19,13 +19,23 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
 
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, const char *s2);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
+typedef struct s_node
+{
+	char			*content;
+	size_t			len;
+	struct s_node	*next;
+}	t_node;
+
 char	*get_next_line(int fd);
+int		ft_find(t_node *lst);
+int		ft_read_file(t_node **lst, t_node **last, int fd);
+t_node	*ft_new_node(char *content, size_t len);
+t_node	*ft_clean_stash(t_node *lst);
+void	ft_add_back(t_node **lst, t_node **last, t_node *new);
+void	*ft_free_list(t_node **lst);
+void	ft_shift_left(t_node *node, size_t start);
+size_t	ft_line_len(t_node *lst);
+char	*ft_gnl(t_node *lst, size_t len);
 
 #endif

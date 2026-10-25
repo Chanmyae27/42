@@ -6,13 +6,13 @@
 /*   By: cmyae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:57:33 by cmyae             #+#    #+#             */
-/*   Updated: 2026/09/24 19:55:00 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/10/25 18:40:22 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_free_list(t_node **lst)
+void	*ft_free_lst(t_node **lst)
 {
 	t_node	*next;
 
@@ -62,8 +62,8 @@ void	ft_add_back(t_node **lst, t_node **last, t_node *new)
 
 size_t	ft_line_len(t_node *lst)
 {
-	size_t	i;
 	size_t	len;
+	size_t	i;
 
 	len = 0;
 	while (lst)

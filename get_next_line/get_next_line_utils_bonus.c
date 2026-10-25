@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmyae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/24 15:57:33 by cmyae             #+#    #+#             */
-/*   Updated: 2026/09/24 19:55:00 by cmyae            ###   ########.fr       */
+/*   Created: 2026/10/25 18:53:13 by cmyae             #+#    #+#             */
+/*   Updated: 2026/10/25 20:09:53 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_remove_fd(t_fd_node **lst, int fd)
 {
 	t_fd_node	*cur;
 	t_fd_node	*prev;
-	t_node		*tmp;
+	t_node		*temp;
 
 	prev = NULL;
 	cur = *lst;
@@ -59,70 +59,70 @@ void	ft_remove_fd(t_fd_node **lst, int fd)
 		*lst = cur->next;
 	while (cur->node)
 	{
-		tmp = cur->node->next;
+		temp = cur->node->next;
 		free (cur->node->content);
 		free (cur->node);
-		cur->node = tmp;
+		cur->node = temp;
 	}
 	free (cur);
 }
 
-char	*ft_gnl(t_node *node)
+char	*ft_gnl(t_node *lst)
 {
 	char	*line;
 	size_t	len;
 	size_t	i;
 	size_t	j;
 
-	len = ft_line_len(node);
+	len = ft_line_len(lst);
 	if (len == 0)
 		return (NULL);
 	line = malloc(len + 1);
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (node && i < len)
+	while (lst && i < len)
 	{
 		j = 0;
-		while (j < node->len && i < len)
+		while (j < lst->len && i < len)
 		{
-			line[i++] = node->content[j++];
+			line[i++] = lst->content[j++];
 			if (line[i - 1] == '\n')
 				break ;
 		}
-		node = node->next;
+		lst = lst->next;
 	}
 	line[i] = '\0';
 	return (line);
 }
 
-size_t	ft_line_len(t_node *node)
+size_t	ft_line_len(t_node *lst)
 {
 	size_t	len;
 	size_t	i;
 
 	len = 0;
-	while (node)
+	while (lst)
 	{
 		i = 0;
-		while (i < node->len)
+		while (i < lst->len)
 		{
 			len++;
-			if (node->content[i++] == '\n')
+			if (lst->content[i++] == '\n')
 				return (len);
 		}
-		node = node->next;
+		lst = lst->next;
 	}
 	return (len);
 }
 
-void	ft_shift_left(t_node *node, size_t start)
+void	ft_shift_left(t_node *lst, size_t start)
 {
 	size_t	i;
 
 	i = 0;
-	while (start < node->len)
-		node->content[i++] = node->content[start++];
-	node->len = i;
-	node->content[i] = '\0';
+	while (start < lst->len)
+		lst->content[i++] = lst->content[start++];
+	lst->len = i;
+	lst->content[i] = '\0';
 }

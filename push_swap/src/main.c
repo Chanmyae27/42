@@ -10,62 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/push_swap.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include "libft.h"
-
-typedef struct s_stack
+int	main(int argc, char **argv)
 {
-	int	*array;
-	int	head;
-	int	size;
-	int	cap;
-}	t_stack;
+	t_ps	ps;
 
-typedef struct s_oplog
-{
-	unsigned char	*data;
-	size_t			len;
-	size_t			cap;
-}	t_oplog;
-
-typedef enum e_strat
-{
-	SIMPLE,
-	MEDIUM,
-	COMPLEX,
-	ADAPTIVE
-}	t_strat;
-
-typedef enum e_opr
-{
-	OP_SA,
-	OP_SB,
-	OP_SS,
-	OP_PA,
-	OP_PB,
-	OP_RA,
-	OP_RB,
-	OP_RR,
-	OP_RRA,
-	OP_RRB,
-	OP_RRR,
-	OP_COUNT
-}	t_opr;
-
-typedef struct s_ps
-{
-	t_stack	a;
-	t_stack	b;
-	t_oplog	log;
-	t_strat	strategy;
-	double	disorder;
-	int		bench;
-	int		op_count[OP_COUNT];
-}	t_ps;
-
-#endif
+	ft_bzero(&ps, sizeof(t_ps));
+	parse_flags(&ps, argc, argv);
+}

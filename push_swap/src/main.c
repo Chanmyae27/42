@@ -18,4 +18,7 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&ps, sizeof(t_ps));
 	parse_flags(&ps, argc, argv);
+	if (!parse_values(&ps, argc, argv))
+		return (0);
+	ps.disorder = compute_disorder(&ps.a);
 }

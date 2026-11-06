@@ -16,3 +16,5 @@ int	stack_at(t_stack *s, int i)
 {
 	return (s->array[(s->head + i) % s->cap]);
 }
+
+

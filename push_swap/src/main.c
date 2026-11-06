@@ -21,4 +21,5 @@ int	main(int argc, char **argv)
 	if (!parse_values(&ps, argc, argv))
 		return (0);
 	ps.disorder = compute_disorder(&ps.a);
+	sort_stack(&ps);
 }

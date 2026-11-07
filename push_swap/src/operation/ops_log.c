@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_log.c                                            :+:      :+:    :+:   */
+/*   ops_log.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmyae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,9 +14,9 @@
 
 void	log_grow(t_ps *ps)
 {
-	t_oplog		*log;
+	t_oplog			*log;
 	unsigned char	*bigger;
-	size_t		cap;
+	size_t			cap;
 
 	log = &ps->log;
 	cap = log->cap * 2;

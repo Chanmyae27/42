@@ -68,4 +68,6 @@ typedef struct s_ps
 	int		op_count[OP_COUNT];
 }	t_ps;
 
+void	parse_flags(t_ps *ps, int argc, char **argv);
+
 #endif

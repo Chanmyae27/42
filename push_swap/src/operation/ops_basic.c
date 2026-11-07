@@ -25,3 +25,19 @@ int	op_swap(t_stack *s)
 	stack_insert_first(s, second);
 	return (1);
 }
+
+int	op_rotate(t_stack *s)
+{
+	if (s->size < 2)
+		return (0);
+	stack_insert_tail(s, stack_remove_head(s));
+	return (1);
+}
+
+int 	op_rev_rotate(t_stack *s)
+{
+	if (s->size < 2)
+		return (0);
+	stack_inert_head(s, stack_remove_tail(s));
+	return (1);
+}

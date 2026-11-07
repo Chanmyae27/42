@@ -21,4 +21,11 @@ void	sort_tiny(t_ps *ps)
 		exec_op(ps, OP_SA);
 		return ;
 	}
+	pos = largest_pos(ps, 1);
+	if (pos == 0)
+		exec_op(ps, OP_RA);
+	if (pos == 1)
+		exec_op(ps, OP_RRA);
+	if (stack_at(&ps->a, 0) > stack_at(&ps->a, 1))
+		exec_op(ps, OP_SA);
 }

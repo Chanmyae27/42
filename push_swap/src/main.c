@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmyae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/03 10:18:54 by cmyae             #+#    #+#             */
-/*   Updated: 2026/11/03 14:44:36 by cmyae            ###   ########.fr       */
+/*   Created: 2026/11/03 10:26:46 by cmyae             #+#    #+#             */
+/*   Updated: 2026/11/17 19:46:41 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,11 @@ int	main(int argc, char **argv)
 		return (0);
 	ps.disorder = compute_disorder(&ps.a);
 	sort_stack(&ps);
+	optimize_log(&ps);
+	if (!ps.bench)
+		log_flush(&ps);
+	else
+		print_bench(&ps);
+	ps_free(&ps);
+	return (0);
 }

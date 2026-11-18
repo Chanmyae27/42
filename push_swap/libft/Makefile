@@ -6,7 +6,7 @@
 #    By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/06 16:43:27 by cmyae             #+#    #+#              #
-#    Updated: 2026/09/06 16:44:19 by cmyae            ###   ########.fr        #
+#    Updated: 2026/10/31 17:04:55 by cmyae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,11 @@ SRCS	=		ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c		\
 			ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c	\
 			ft_lstmap.c
 
-PRINTF_SRCS	=	ft_printf/ft_printf.c ft_printf/ft_printf_utils.c		\
-			ft_printf/ft_print_char.c ft_printf/ft_print_ptr.c		\
-			ft_printf/ft_print_hex.c ft_printf/ft_print_int.c		\
+PRINTF_SRCS	=	ft_printf/ft_printf.c ft_printf/ft_printf_utils.c	\
+			ft_printf/ft_print_char.c ft_printf/ft_print_ptr.c	\
+			ft_printf/ft_print_hex.c ft_printf/ft_print_int.c	\
 			ft_printf/ft_int_utils.c
-
+ 
 OBJS	=		$(SRCS:.c=.o) $(PRINTF_SRCS:.c=.o)
 
 all	:		$(NAME)
@@ -46,7 +46,7 @@ $(NAME)	:		$(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 ft_printf/%.o	:	ft_printf/%.c ft_printf/ft_printf.h libft.h
-	$(CC) $(CFLAGS) -I.. -c $< -o $@
+		$(CC) $(CFLAGS) -I.. -c $< -o $@
 
 clean	:
 	$(RM) $(OBJS)

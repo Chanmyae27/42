@@ -6,7 +6,7 @@
 /*   By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:36:39 by cmyae             #+#    #+#             */
-/*   Updated: 2026/09/18 13:48:46 by cmyae            ###   ########.fr       */
+/*   Updated: 2026/09/24 17:30:43 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include "../libft.h"
+# include "libft/libft.h"
 
 typedef struct s_flags
 {

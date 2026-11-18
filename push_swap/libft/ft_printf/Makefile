@@ -6,7 +6,7 @@
 #    By: cmyae <cmyae@student.42bangkok.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/10 14:24:11 by cmyae             #+#    #+#              #
-#    Updated: 2026/09/18 14:28:26 by cmyae            ###   ########.fr        #
+#    Updated: 2026/10/31 17:07:55 by cmyae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,27 +30,27 @@ LIBFT		=	$(LIBFT_DIR)/libft.a
 all		:
 		@$(MAKE) --silent -C $(LIBFT_DIR)
 		@$(MAKE) --no-print-directory $(NAME)
-
+ 
 $(NAME)		:	$(LIBFT) $(OBJS)
 		@cp $(LIBFT) $(NAME)
 		$(AR) $(NAME) $(OBJS)
-
+ 
 $(LIBFT)	:
 		@$(MAKE) --silent -C $(LIBFT_DIR)
-
+ 
 %.o		:	%.c ft_printf.h $(LIBFT_DIR)/libft.h
-		$(CC) $(CFLAGS) -I$(LIBFT_DIR)/.. -c $< -o $@c
-
+		$(CC) $(CFLAGS) -I$(LIBFT_DIR)/.. -c $< -o $@
+ 
 bonus		:	all
-
+ 
 clean		:
-		@make --silent -C $(LIBFT_DIR) clean
+		@$(MAKE) --silent -C $(LIBFT_DIR) clean
 		$(RM) $(OBJS)
-
+ 
 fclean		:	clean
-		@make --silent -C $(LIBFT_DIR) fclean
+		@$(MAKE) --silent -C $(LIBFT_DIR) fclean
 		$(RM) $(NAME)
-
+ 
 re		:	fclean all
-
-.PHONY		:	all bonus clean fclean re $(LIBFT)
+ 
+.PHONY		:	all bonus clean fclean re

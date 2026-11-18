@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmyae <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/03 10:18:54 by cmyae             #+#    #+#             */
-/*   Updated: 2026/11/03 14:44:36 by cmyae            ###   ########.fr       */
+/*   Created: 2026/11/04 11:34:37 by cmyae             #+#    #+#             */
+/*   Updated: 2026/11/04 14:18:26 by cmyae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ps_free(t_ps *ps)
 {
-	free (ps->a.array);
-	free (ps->b.array);
-	free (ps->log.data);
+	free(ps->a.array);
+	free(ps->b.array);
+	free(ps->log.data);
 	ps->a.array = NULL;
 	ps->b.array = NULL;
 	ps->log.data = NULL;
